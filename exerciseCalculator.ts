@@ -27,8 +27,12 @@ const parser = (args: string[]): ExerciseInfo => {
 const calculateExercises = (
   dayOfExercise: number[],
   target: number
-): Result => {
+): Result | unknown => {
   const periodLength = dayOfExercise.length;
+  const hasString = dayOfExercise.some((item) => typeof item === "string");
+  if (hasString || typeof target !== "number") {
+    return { error: "malformatted parameters" };
+  }
   const trainingDays = dayOfExercise.filter((day) => day > 0).length;
   const average = dayOfExercise.reduce((a, b) => a + b, 0) / periodLength;
   let rating: number;
@@ -59,3 +63,5 @@ const calculateExercises = (
 
 const { dayOfExercise, target } = parser(process.argv);
 console.log(calculateExercises(dayOfExercise, target));
+
+export { calculateExercises };
