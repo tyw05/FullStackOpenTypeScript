@@ -27,7 +27,7 @@ const parser = (args: string[]): ExerciseInfo => {
 const calculateExercises = (
   dayOfExercise: number[],
   target: number
-): Result | unknown => {
+): Result | object => {
   const periodLength = dayOfExercise.length;
   const hasString = dayOfExercise.some((item) => typeof item === "string");
   if (hasString || typeof target !== "number") {
