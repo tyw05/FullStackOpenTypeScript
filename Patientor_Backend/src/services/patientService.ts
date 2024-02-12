@@ -1,5 +1,6 @@
 import patients from "../data/patients";
-import { NoSSNPatient, Patient } from "../types";
+import { Gender, NoSSNPatient, Patient } from "../types";
+import { v4 as uuidv4 } from "uuid";
 
 const getPatients = (): Patient[] => {
   return patients;
@@ -15,4 +16,22 @@ const getPatientsNoSSN = (): NoSSNPatient[] => {
   }));
 };
 
-export { getPatients, getPatientsNoSSN };
+const addPatient = (
+  name: string,
+  dateOfBirth: string,
+  gender: Gender,
+  occupation: string,
+  ssn: string
+) => {
+  const newPatient = {
+    id: uuidv4(),
+    name: name,
+    dateOfBirth: dateOfBirth,
+    gender: gender,
+    occupation: occupation,
+    ssn: ssn,
+  };
+  patients.push(newPatient);
+  return newPatient;
+};
+export { getPatients, getPatientsNoSSN, addPatient };
