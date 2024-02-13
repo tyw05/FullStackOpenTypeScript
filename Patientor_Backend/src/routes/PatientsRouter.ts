@@ -16,6 +16,15 @@ PatientRouter.get("/ssn", (_req, res) => {
   res.send(getPatients());
 });
 
+PatientRouter.get("/:id", (req, res) => {
+  const patient = getPatients().find((patient) => patient.id === req.params.id);
+  if (patient) {
+    res.send(patient);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
 PatientRouter.post("/", (req, res) => {
   if (toNeWPatientEntry(req.body)) {
     const { name, dateOfBirth, gender, occupation, ssn } = req.body;

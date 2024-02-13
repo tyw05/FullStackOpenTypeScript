@@ -3,6 +3,7 @@ import { Gender, NoSSNPatient, Patient } from "../types";
 import { v4 as uuidv4 } from "uuid";
 
 const getPatients = (): Patient[] => {
+  console.log(patients);
   return patients;
 };
 
@@ -13,6 +14,7 @@ const getPatientsNoSSN = (): NoSSNPatient[] => {
     dateOfBirth: patient.dateOfBirth,
     gender: patient.gender,
     occupation: patient.occupation,
+    entries: patient.entries,
   }));
 };
 
@@ -30,6 +32,7 @@ const addPatient = (
     gender: gender,
     occupation: occupation,
     ssn: ssn,
+    entries: [],
   };
   patients.push(newPatient);
   return newPatient;
