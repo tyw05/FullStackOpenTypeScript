@@ -50,11 +50,17 @@ const PatientDetail = () => {
       <div>
         <h2>Entries</h2>
         {entries.map((entry, index) => (
-          <div key={index}>
+          <div
+            key={index}
+            style={{
+              border: "1px solid black",
+              borderRadius: "8px",
+              marginTop: "12px",
+            }}
+          >
             <p>{entry.date}</p>
             <span style={{ fontStyle: "italic" }}>{entry.description}</span>
             {entryCheck(entry.diagnosisCodes)}
-            <ul></ul>
           </div>
         ))}
       </div>
